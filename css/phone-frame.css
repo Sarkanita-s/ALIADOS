@@ -1,0 +1,483 @@
+/**
+ * ===================================================================
+ * ALIADOS - MARCO DEL SMARTPHONE & CONTROLES DE PRESENTACIÓN
+ * ===================================================================
+ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--stage-bg-gradient);
+  font-family: var(--font-body);
+  color: var(--stage-text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 24px 16px 40px;
+  overflow-x: hidden;
+}
+
+/* ===================================================================
+ * HEADER DE PRESENTACIÓN (SUPERIOR)
+ * =================================================================== */
+.showcase-header {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 14px 24px;
+  background: var(--stage-panel-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--stage-panel-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--primary-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-glow);
+  font-weight: 800;
+  font-size: 20px;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+
+.brand-titles h1 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+}
+
+.mvp-pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: rgba(249, 115, 22, 0.2);
+  color: #FB923C;
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.05em;
+}
+
+.brand-subtitle {
+  font-size: 0.8rem;
+  color: var(--stage-text-muted);
+  margin-top: 2px;
+}
+
+/* Acciones de la barra superior */
+.showcase-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.control-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--stage-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.control-select {
+  background: rgba(15, 23, 42, 0.8);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: var(--radius-xs);
+  font-size: 0.82rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.control-select:hover {
+  border-color: var(--primary);
+}
+
+/* ===================================================================
+ * CONTENEDOR PRINCIPAL DEL ESCENARIO
+ * =================================================================== */
+.showcase-stage {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 8px;
+}
+
+/* ===================================================================
+ * CARCASA DEL SMARTPHONE (FRAME HARDWARE)
+ * =================================================================== */
+.phone-device-wrapper {
+  position: relative;
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.55)) drop-shadow(0 0 25px rgba(79, 70, 229, 0.15));
+  transition: transform 0.3s ease;
+}
+
+.phone-device {
+  width: 395px;
+  height: 812px;
+  background: var(--phone-bezel);
+  border-radius: 52px;
+  padding: 12px;
+  position: relative;
+  box-shadow: 
+    inset 0 0 4px 2px rgba(255, 255, 255, 0.2),
+    inset 0 0 0 2px var(--phone-metal-edge),
+    0 0 0 2px #0f172a;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Botones laterales físicos simulados */
+.phone-device::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 140px;
+  width: 4px;
+  height: 38px;
+  background: #334155;
+  border-radius: 4px 0 0 4px;
+  box-shadow: 0 45px 0 #334155, 0 85px 0 #334155; /* Botones de volumen */
+}
+
+.phone-device::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  top: 170px;
+  width: 4px;
+  height: 58px;
+  background: #334155;
+  border-radius: 0 4px 4px 0; /* Botón de encendido */
+}
+
+/* Pantalla táctil interior */
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: var(--phone-bg);
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+/* ===================================================================
+ * HARDWARE DE PANTALLA: BARRA DE ESTADO & DYNAMIC ISLAND
+ * =================================================================== */
+.status-bar {
+  height: 44px;
+  width: 100%;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.status-time {
+  letter-spacing: -0.2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon-signal, .icon-wifi, .icon-battery {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dynamic Island */
+.dynamic-island {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 28px;
+  background: #000000;
+  border-radius: 20px;
+  z-index: 101;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dynamic-island-sensor {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #0d131f;
+  border: 1px solid #1e293b;
+}
+
+.dynamic-island-camera {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #080d16;
+  border: 1px solid #111827;
+  position: relative;
+}
+
+.dynamic-island-camera::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 3px;
+  height: 3px;
+  background: rgba(37, 99, 235, 0.7);
+  border-radius: 50%;
+}
+
+/* Home Indicator inferior de iOS */
+.home-indicator {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 135px;
+  height: 4px;
+  background: #94A3B8;
+  border-radius: 4px;
+  z-index: 99;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* ===================================================================
+ * PANELES LATERALES DE SOPORTE PARA LA PRESENTACIÓN
+ * =================================================================== */
+.showcase-sidebar {
+  flex: 1;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.info-card {
+  background: var(--stage-panel-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--stage-panel-border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.info-card h3 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+}
+
+.info-card p {
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--stage-text-muted);
+  margin-bottom: 12px;
+}
+
+.role-switcher-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.role-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.role-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--primary);
+  transform: translateX(4px);
+}
+
+.role-btn.active {
+  background: var(--primary-gradient);
+  border-color: transparent;
+  box-shadow: var(--shadow-glow);
+}
+
+.role-avatar {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.role-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.role-name {
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+
+.role-tag {
+  font-size: 0.72rem;
+  opacity: 0.85;
+  font-weight: 400;
+}
+
+/* Lista de características del MVP */
+.feature-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feature-checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+.feature-checklist li span.check-icon {
+  color: #10B981;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+/* ===================================================================
+ * RESPONSIVIDAD: DISPOSITIVOS MÓVILES REALES
+ * =================================================================== */
+@media (max-width: 900px) {
+  .showcase-stage {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .showcase-sidebar {
+    max-width: 100%;
+    width: 100%;
+    order: 2;
+  }
+  
+  .phone-device-wrapper {
+    order: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+    background: var(--phone-bg);
+  }
+  
+  .showcase-header, .showcase-sidebar {
+    display: none;
+  }
+  
+  .phone-device-wrapper {
+    width: 100vw;
+    height: 100vh;
+    filter: none;
+  }
+  
+  .phone-device {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+  
+  .phone-device::before, .phone-device::after {
+    display: none;
+  }
+  
+  .phone-screen {
+    border-radius: 0;
+  }
+}

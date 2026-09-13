@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ALIADOS - Prototipo MVP | Plataforma de Coparentalidad</title>
+  <meta name="description"
+    content="Prototipo interactivo de alta fidelidad de ALIADOS: la plataforma colaborativa para padres separados centrada en el bienestar infantil y la familia extendida.">
+
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Estilos del Proyecto -->
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/phone-frame.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+
+  <!-- ===================================================================
+       HEADER SUPERIOR DE PRESENTACIÓN (SHOWCASE BAR)
+       =================================================================== -->
+  <header class="showcase-header">
+    <div class="brand-badge">
+      <div class="brand-icon">A</div>
+      <div class="brand-titles">
+        <h1>ALIADOS <span class="mvp-pill">Prototipo MVP</span></h1>
+        <p class="brand-subtitle">Gómez y Schmied • CAJ San Miguel | Coparentalidad Positiva</p>
+      </div>
+    </div>
+
+    <div class="showcase-actions">
+      <!-- Selector de Paleta de Colores Dinámica -->
+      <div class="control-group">
+        <label for="theme-switcher-select">🎨 Paleta CSS:</label>
+        <select id="theme-switcher-select" class="control-select" title="Cambiar tema de color CSS">
+          <option value="default">🧡 Cálido Crianza (Default)</option>
+          <option value="sereno">🌊 Azul Sereno & Esmeralda</option>
+          <option value="lavanda">🌸 Lavanda & Afecto</option>
+          <option value="solar">☀️ Solar & Terracota</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================
+       ESCENARIO PRINCIPAL (SIMULADOR DE CELULAR + PANELES)
+       =================================================================== -->
+  <main class="showcase-stage">
+
+    <!-- Panel Lateral Izquierdo: Control de Roles y Simulación -->
+    <aside class="showcase-sidebar">
+      <div class="info-card">
+        <h3>👥 Selector de Rol (Simulador)</h3>
+        <p>Prueba cómo cambia la experiencia según el perfil (definido en el Acta de Proyecto):</p>
+
+        <div class="role-switcher-buttons">
+          <button class="role-btn active tap-effect" data-role="mama" id="role-btn-mama">
+            <span class="role-avatar">👩</span>
+            <div class="role-details">
+              <span class="role-name">Claudia Gómez (Mamá)</span>
+              <span class="role-tag">Custodia Principal • Administradora</span>
+            </div>
+          </button>
+
+          <button class="role-btn tap-effect" data-role="papa" id="role-btn-papa">
+            <span class="role-avatar">👨</span>
+            <div class="role-details">
+              <span class="role-name">Carlos Schmied (Papá)</span>
+              <span class="role-tag">Co-parentalidad • Administrador</span>
+            </div>
+          </button>
+
+          <button class="role-btn tap-effect" data-role="abuela" id="role-btn-abuela">
+            <span class="role-avatar">👵</span>
+            <div class="role-details">
+              <span class="role-name">Marta Riquelme (Abuela)</span>
+              <span class="role-tag">Familia Extendida • Modo Consulta / RSVP</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Dispositivo Smartphone Simulado -->
+    <div class="phone-device-wrapper">
+      <div class="phone-device">
+        <div class="phone-screen">
+
+          <!-- Barra de Estado (Reloj real, Wi-Fi, Batería) -->
+          <div class="status-bar">
+            <span class="status-time" id="status-time-display">09:41</span>
+            <div class="dynamic-island">
+              <div class="dynamic-island-sensor"></div>
+              <div class="dynamic-island-camera"></div>
+            </div>
+            <div class="status-icons">
+              <span class="icon-signal">📶</span>
+              <span class="icon-wifi">􀙇</span>
+              <span class="icon-battery">🔋 98%</span>
+            </div>
+          </div>
+
+          <!-- Header Interno de la App -->
+          <div class="app-header">
+            <!-- Selector de Menor (Mateo / Sofía) -->
+            <button class="header-kid-selector tap-effect" id="kid-header-btn" title="Cambiar de hijo">
+              <div class="kid-avatar-mini" id="header-kid-avatar">🧒</div>
+              <div class="kid-info-mini">
+                <span class="kid-name-mini" id="header-kid-name">Mateo <span
+                    style="font-size: 0.65rem; opacity: 0.7;">▼</span></span>
+                <span class="kid-age-mini" id="header-kid-age">7 años</span>
+              </div>
+            </button>
+
+            <!-- Acciones Superiores: Badge de Rol y Botón SOS -->
+            <div class="header-actions">
+              <div class="role-badge-pill role-badge-admin" id="role-header-badge">
+                <span id="role-header-label">Mamá (Admin)</span>
+              </div>
+              <button class="sos-quick-btn tap-effect" id="quick-sos-btn" title="Alerta de Emergencia SOS">
+                🚨
+              </button>
+            </div>
+          </div>
+
+          <!-- Toast Flotante In-App -->
+          <div class="in-app-toast" id="app-toast">
+            <span id="toast-text">✨ Notificación</span>
+          </div>
+
+          <!-- Contenido Desplazable de las Pantallas -->
+          <div class="app-content">
+
+            <!-- =======================================================
+                 VISTA 1: INICIO (DASHBOARD)
+                 ======================================================= -->
+            <section class="view-section active anim-fade-in" id="view-home">
+
+              <!-- Tarjeta de Estado de Custodia -->
+              <div class="custody-hero-card">
+                <span class="custody-badge-label">🏡 Estado de Crianza</span>
+                <div class="custody-title" id="custody-title-display">Esta semana con Mamá (Claudia)</div>
+                <div class="custody-details" id="custody-details-display">
+                  Próximo traspaso: Viernes 18:00 hrs en el colegio
+                </div>
+                <div class="custody-status-bar-wrap">
+                  <div class="custody-progress-fill"></div>
+                </div>
+                <div class="custody-footer-note">
+                  <span>Día 4 de 7 del ciclo</span>
+                  <span>Coordinación fluida ✨</span>
+                </div>
+              </div>
+
+              <!-- Resumen Rápido -->
+              <div class="today-summary-grid">
+                <div class="today-mini-stat">
+                  <div class="stat-header">
+                    <span class="stat-label">Próx. Evento</span>
+                    <span class="stat-icon">📅</span>
+                  </div>
+                  <span class="stat-count">Jueves</span>
+                  <span style="font-size: 0.7rem; color: var(--text-muted);">Acto Fiestas Patrias</span>
+                </div>
+
+                <div class="today-mini-stat">
+                  <div class="stat-header">
+                    <span class="stat-label">Calzado Actual</span>
+                    <span class="stat-icon">👟</span>
+                  </div>
+                  <span class="stat-count">Talla 31</span>
+                  <span style="font-size: 0.7rem; color: var(--color-health); font-weight: 600;">Al día</span>
+                </div>
+              </div>
+
+              <!-- Alerta de Medicamento del Día -->
+              <div class="section-title-wrap">
+                <h3 class="section-title">💊 Medicamentos de Hoy</h3>
+                <span class="section-title-badge">Sincronizado</span>
+              </div>
+              <div id="home-med-card-container">
+                <!-- Se inyecta dinámicamente -->
+              </div>
+
+              <!-- Nota de Cariño o Traspaso entre Padres -->
+              <div class="section-title-wrap">
+                <h3 class="section-title">💌 Bitácora Afectiva</h3>
+              </div>
+              <div class="parenting-note-card">
+                <div class="note-heart-icon">🧡</div>
+                <div class="note-text-content">
+                  <p id="parenting-note-text">“Mateo durmió excelente anoche. Practicó su lectura y llevó su dinosaurio
+                    favorito en la mochila.”</p>
+                  <div class="note-author" id="parenting-note-author">Nota dejada por Claudia • Hoy 08:15 hrs</div>
+                </div>
+              </div>
+
+            </section>
+
+            <!-- =======================================================
+                 VISTA 2: MANUAL DEL NIÑO
+                 ======================================================= -->
+            <section class="view-section" id="view-manual">
+
+              <div class="section-title-wrap">
+                <h3 class="section-title">📘 Manual de Rutinas y Cuidados</h3>
+                <span class="section-title-badge">Esencial</span>
+              </div>
+              <p style="font-size: 0.76rem; color: var(--text-secondary); margin-bottom: 12px;">
+                Información clave para mantener rutinas homologadas en ambas casas y con los abuelos.
+              </p>
+
+              <!-- Pestañas del Manual -->
+              <div class="manual-tabs">
+                <button class="manual-tab-btn active tap-effect" data-tab="habits">🍽️ Gustos</button>
+                <button class="manual-tab-btn tap-effect" data-tab="fears">🛡️ Miedos & Fobias</button>
+                <button class="manual-tab-btn tap-effect" data-tab="hobbies">🦖 Hobbies</button>
+                <button class="manual-tab-btn tap-effect" data-tab="sizes">📏 Tallas</button>
+              </div>
+
+              <!-- Panel 1: Gustos y Rutinas -->
+              <div class="manual-panel active" id="manual-panel-habits">
+                <div class="card">
+                  <h4 style="font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: var(--text-primary);">
+                    😋 Comidas que le encantan:
+                  </h4>
+                  <ul id="fav-foods-list"
+                    style="list-style: none; font-size: 0.78rem; color: var(--text-secondary); line-height: 1.6;">
+                    <!-- Dinámico -->
+                  </ul>
+                </div>
+
+                <div class="card">
+                  <h4 style="font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; color: #DC2626;">
+                    🙅 Comidas que rechaza:
+                  </h4>
+                  <ul id="dislike-foods-list"
+                    style="list-style: none; font-size: 0.78rem; color: var(--text-secondary); line-height: 1.6;">
+                    <!-- Dinámico -->
+                  </ul>
+                </div>
+
+                <div class="card">
+                  <h4 style="font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: var(--text-primary);">
+                    🌙 Ritual para dormir:
+                  </h4>
+                  <p id="bedtime-ritual-desc"
+                    style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.4;">
+                    <!-- Dinámico -->
+                  </p>
+                </div>
+
+                <div class="card">
+                  <h4 style="font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; color: var(--text-primary);">
+                    🎵 Música y Calma:
+                  </h4>
+                  <p id="music-ritual-desc" style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.4;">
+                    <!-- Dinámico -->
+                  </p>
+                </div>
+              </div>
+
+              <!-- Panel 2: Fobias y Miedos -->
+              <div class="manual-panel" id="manual-panel-fears">
+                <div class="card" id="fears-list-container">
+                  <!-- Dinámico -->
+                </div>
+              </div>
+
+              <!-- Panel 3: Hobbies -->
+              <div class="manual-panel" id="manual-panel-hobbies">
+                <div class="card" id="hobbies-list-container">
+                  <!-- Dinámico -->
+                </div>
+              </div>
+
+              <!-- Panel 4: Tallas Actuales -->
+              <div class="manual-panel" id="manual-panel-sizes">
+                <div class="card">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                    <h4 style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">
+                      Medidas y Tallas Oficiales
+                    </h4>
+                    <span class="btn-edit-talla"
+                      style="font-size: 0.7rem; color: var(--primary); font-weight: 700; cursor: pointer;">
+                      ✏️ Editar
+                    </span>
+                  </div>
+                  <p style="font-size: 0.74rem; color: var(--text-muted); margin-bottom: 12px;">
+                    Para compras de ropa o calzado de abuelos y padres sin equivocarse de número.
+                  </p>
+
+                  <div class="sizes-grid">
+                    <div class="size-box">
+                      <div class="size-icon">👟</div>
+                      <div class="size-category">Zapatillas</div>
+                      <div class="size-value" id="size-shoe-val">31</div>
+                      <div class="size-updated" id="size-shoe-upd">Hace 2 sem.</div>
+                    </div>
+
+                    <div class="size-box">
+                      <div class="size-icon">👕</div>
+                      <div class="size-category">Polera</div>
+                      <div class="size-value" id="size-shirt-val">Talla 8</div>
+                      <div class="size-updated" id="size-shirt-upd">Hace 1 mes</div>
+                    </div>
+
+                    <div class="size-box">
+                      <div class="size-icon">👖</div>
+                      <div class="size-category">Pantalón</div>
+                      <div class="size-value" id="size-pants-val">Talla 8</div>
+                      <div class="size-updated" id="size-pants-upd">Hace 1 mes</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </section>
+
+            <!-- =======================================================
+                 VISTA 3: SALUD & SOS
+                 ======================================================= -->
+            <section class="view-section" id="view-health">
+
+              <!-- Banner Médico de Urgencia -->
+              <div class="medical-hero-banner">
+                <div class="med-hero-text">
+                  <h3>Ficha Médica Vital</h3>
+                  <p id="insurance-val-display">Fonasa B • CESFAM San Miguel</p>
+                </div>
+                <div class="blood-type-badge">
+                  <div class="blood-type-label">Grupo</div>
+                  <div class="blood-type-val" id="blood-val-display">O+</div>
+                </div>
+              </div>
+
+              <!-- Alergias Críticas -->
+              <div class="card" style="border-left: 4px solid var(--color-sos);">
+                <h4
+                  style="font-size: 0.85rem; font-weight: 800; color: var(--color-sos); display: flex; align-items: center; gap: 6px;">
+                  ⚠️ ALERGIAS Y PRECAUCIONES MÉDICAS
+                </h4>
+                <div class="allergy-tag-list" id="allergies-container">
+                  <!-- Dinámico -->
+                </div>
+              </div>
+
+              <!-- Acciones Críticas: Exportar Ficha y Botón de Pánico SOS -->
+              <div class="health-actions-row">
+                <button class="btn-health-export tap-effect" id="btn-export-health">
+                  📋 Ficha Urgencia
+                </button>
+                <button class="btn-health-sos tap-effect pulse-sos-active" id="btn-sos-alert">
+                  🚨 ALARMA SOS
+                </button>
+              </div>
+
+              <!-- Medicamentos en Curso -->
+              <div class="card">
+                <div class="section-title-wrap">
+                  <h4 style="font-size: 0.85rem; font-weight: 700; color: var(--text-primary);">
+                    💊 Tratamientos y Medicamentos Activos
+                  </h4>
+                </div>
+                <div id="health-meds-list">
+                  <!-- Dinámico -->
+                </div>
+              </div>
+
+              <!-- Pediatra de Cabecera -->
+              <div class="section-title-wrap">
+                <h4 class="section-title">🩺 Pediatra de Cabecera</h4>
+              </div>
+              <div class="doctor-contact-card">
+                <div class="doctor-info">
+                  <div class="doctor-avatar">👩‍⚕️</div>
+                  <div>
+                    <div class="doctor-name" id="doctor-name-display">Dra. Marcela Vega S.</div>
+                    <div class="doctor-role" id="doctor-clinic-display">Pediatra de Cabecera • Clínica San Miguel</div>
+                  </div>
+                </div>
+                <button class="btn-call-doctor tap-effect" title="Llamar Pediatra"
+                  onclick="alert('Simulando llamada a Dra. Marcela Vega (+56 9 8765 4321)')">
+                  📞
+                </button>
+              </div>
+
+            </section>
+
+            <!-- =======================================================
+                 VISTA 4: AGENDA COMPARTIDA
+                 ======================================================= -->
+            <section class="view-section" id="view-calendar">
+
+              <div class="section-title-wrap">
+                <h3 class="section-title">📅 Agenda Social & Escolar</h3>
+                <span class="section-title-badge">Compartida</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                <p style="font-size: 0.74rem; color: var(--text-secondary); margin: 0;">
+                  Abuelos y cuidadores confirman asistencia.
+                </p>
+                <button id="btn-add-event" class="btn-rsvp-action tap-effect"
+                  style="font-size: 0.72rem; padding: 5px 12px;">
+                  + Evento
+                </button>
+              </div>
+
+              <!-- Lista de Eventos -->
+              <div id="events-list-container">
+                <!-- Se inyecta dinámicamente -->
+              </div>
+
+            </section>
+
+            <!-- =======================================================
+                 VISTA 5: WISHLIST & REGALOS
+                 ======================================================= -->
+            <section class="view-section" id="view-wishlist">
+
+              <div class="wishlist-hero-card">
+                <h3>🎁 Lista de Deseos & Necesidades</h3>
+                <p>Evita regalos duplicados y coordina compras familiares con anticipación.</p>
+              </div>
+
+              <div class="section-title-wrap">
+                <h4 class="section-title">Artículos Prioritarios</h4>
+                <span class="section-title-badge">Anti-duplicados</span>
+              </div>
+
+              <div id="wishlist-items-container">
+                <!-- Se inyecta dinámicamente -->
+              </div>
+
+            </section>
+
+          </div>
+
+          <!-- Barra de Navegación Inferior (5 Pantallas Clave) -->
+          <nav class="bottom-nav-bar">
+            <button class="nav-item active tap-effect" data-target="home" id="nav-btn-home">
+              <span class="nav-icon">🏠</span>
+              <span class="nav-label">Inicio</span>
+            </button>
+            <button class="nav-item tap-effect" data-target="manual" id="nav-btn-manual">
+              <span class="nav-icon">📘</span>
+              <span class="nav-label">Manual</span>
+            </button>
+            <button class="nav-item tap-effect" data-target="health" id="nav-btn-health">
+              <span class="nav-icon">🩺</span>
+              <span class="nav-label">Salud</span>
+            </button>
+            <button class="nav-item tap-effect" data-target="calendar" id="nav-btn-calendar">
+              <span class="nav-icon">📅</span>
+              <span class="nav-label">Agenda</span>
+            </button>
+            <button class="nav-item tap-effect" data-target="wishlist" id="nav-btn-wishlist">
+              <span class="nav-icon">🎁</span>
+              <span class="nav-label">Deseos</span>
+            </button>
+          </nav>
+
+          <!-- Indicador de inicio inferior de iOS -->
+          <div class="home-indicator"></div>
+
+          <!-- Modales Flotantes In-App -->
+          <div class="modal-backdrop" id="modal-backdrop">
+            <div class="modal-sheet anim-scale-up">
+              <div class="modal-header">
+                <div class="modal-title" id="modal-title">Título del Modal</div>
+                <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+              </div>
+              <div class="modal-body" id="modal-body">
+                <!-- Contenido dinámico -->
+              </div>
+              <div class="modal-footer">
+                <button class="btn-health-export" id="modal-confirm-btn" style="flex: 1;">Aceptar</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
