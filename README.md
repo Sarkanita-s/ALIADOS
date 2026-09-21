@@ -11,6 +11,12 @@ Puedes levantar y probar el proyecto usando:
 ### Opción 1: Servidor Local con Python
 Si tienes Python instalado en tu equipo, abre una terminal en la carpeta del proyecto y ejecuta:
 
+**En Windows (PowerShell / CMD):**
+```powershell
+py -m http.server 8080
+```
+
+**En macOS / Linux:**
 ```bash
 python3 -m http.server 8080
 ```
